@@ -9,7 +9,7 @@ public class Worker extends Employer {
 
     Worker (String surname, double workTimeRate, double workedHours) {
         super(surname, workTimeRate);
-        this.typeOfEmployer = "Worker";
+        this.typeOfEmployer = TypeOfEmployer.WORKER;
         this.salaryPerHour = Constances.getSalaryPerHourForWorkTimeRates().get(workTimeRate);
         this.workedHours = workedHours;
         this.workingTimeLimit = Constances.getWorkTimeLimits().get(workTimeRate);

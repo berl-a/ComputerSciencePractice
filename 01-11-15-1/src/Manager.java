@@ -8,7 +8,7 @@ public class Manager extends Employer {
 
     Manager (String surname, double workTimeRate, double extraSalaryPercent) {
         super(surname, workTimeRate);
-        this.typeOfEmployer = "Manager";
+        this.typeOfEmployer = TypeOfEmployer.MANAGER;
         this.extraSalaryPercent = extraSalaryPercent;
     }
 

@@ -26,19 +26,19 @@ public class Business {
         return e;
     }
 
-    public String getTypeOfEmployer (String surname) {
-        String type = null;
+    public TypeOfEmployer getTypeOfEmployer (String surname) {
+        TypeOfEmployer type = null;
         for(int i = 0; i < employers.keySet().toArray().length && type == null; i ++)
             if(employers.keySet().toArray()[i].equals(surname))
-                type = employers.get(employers.keySet().toArray()[i]).typeOfEmployer;
+                type = employers.get(employers.keySet().toArray()[i]).getTypeOfEmployer();
         return type;
     }
 
-    public boolean addEmployer (String typeOfEmployer, String surname, double workTimeRate) {
+    public boolean addEmployer (TypeOfEmployer typeOfEmployer, String surname, double workTimeRate) {
         if(findEmployer(surname) == null) {
-            if(typeOfEmployer.equals("Worker"))
+            if(typeOfEmployer.equals(TypeOfEmployer.WORKER))
                 employers.put(surname, new Worker(surname, workTimeRate, 0));
-            else if (typeOfEmployer.equals("Manager"))
+            else if (typeOfEmployer.equals(TypeOfEmployer.MANAGER))
                 employers.put(surname, new Manager(surname, workTimeRate, 0));
             else
                 return false;
@@ -58,19 +58,19 @@ public class Business {
         return found;
     }
 
-    public int numberOfEmployersOfType (String employerType) {
+    public int numberOfEmployersOfType (TypeOfEmployer typeOfEmployer) {
         int n = 0;
         for(String surname : employers.keySet()) {
-            if(employers.get(surname).typeOfEmployer.equals(employerType))
+            if(employers.get(surname).getTypeOfEmployer().equals(typeOfEmployer))
                 n ++;
         }
         return n;
     }
 
-    public double getSumOfSalarysOfEmployerOfType (String employerType) {
+    public double getSumOfSalarysOfEmployerOfType (TypeOfEmployer typeOfEmployer) {
         int s = 0;
         for(String surname : employers.keySet()) {
-            if(employers.get(surname).typeOfEmployer.equals(employerType))
+            if(employers.get(surname).getTypeOfEmployer().equals(typeOfEmployer))
                 s += employers.get(surname).getSalary();
         }
         return s;
@@ -85,20 +85,20 @@ public class Business {
         for(String surname : employers.keySet()) {
             Employer e = employers.get(surname);
             DecimalFormat format = new DecimalFormat("#.##");
-            System.out.println("|" + surname + getFillingSpaces(surname.length(), MAX_SURNAME_LENGTH) + "|" + e.typeOfEmployer + getFillingSpaces(e.typeOfEmployer.length(), MAX_TYPE_LENGTH) + "|" + format.format(e.workTimeRate) + getFillingSpaces(format.format(e.workTimeRate).toString().length(), MAX_WORK_TIME_RATE_LENGTH) + "|");
+            System.out.println("|" + surname + getFillingSpaces(surname.length(), MAX_SURNAME_LENGTH) + "|" + e.typeOfEmployer + getFillingSpaces(e.getTypeOfEmployer().toString().length(), MAX_TYPE_LENGTH) + "|" + format.format(e.workTimeRate) + getFillingSpaces(format.format(e.workTimeRate).toString().length(), MAX_WORK_TIME_RATE_LENGTH) + "|");
         }
         System.out.println(getFillingDashes(MAX_SURNAME_LENGTH + MAX_TYPE_LENGTH + MAX_WORK_TIME_RATE_LENGTH + 4));
     }
 
-    public void printEmployersOfEmployerType (String employerType) {
+    public void printEmployersOfEmployerType (TypeOfEmployer typeOfEmployer) {
         System.out.println();
-        System.out.println("All the " + employerType + "s of \"The Corp\" Corporation");
+        System.out.println("All the " + typeOfEmployer.toString() + "s of \"The Corp\" Corporation");
         System.out.println();
 
         System.out.println(getFillingDashes(MAX_SURNAME_LENGTH + MAX_WORK_TIME_RATE_LENGTH + 3));
         for(String surname : employers.keySet()) {
             Employer e = employers.get(surname);
-            if(e.typeOfEmployer.equals(employerType)) {
+            if(e.getTypeOfEmployer().equals(typeOfEmployer)) {
                 DecimalFormat format = new DecimalFormat("#.##");
                 System.out.println("|" + surname + getFillingSpaces(surname.length(), MAX_SURNAME_LENGTH) + "|" + format.format(e.workTimeRate) + getFillingSpaces(format.format(e.workTimeRate).toString().length(), MAX_WORK_TIME_RATE_LENGTH) + "|");
             }
@@ -115,7 +115,7 @@ public class Business {
         for(String surname : employers.keySet()) {
             Employer e = employers.get(surname);
             DecimalFormat format = new DecimalFormat("#.##");
-            System.out.println("|" + surname + getFillingSpaces(surname.length(), MAX_SURNAME_LENGTH) + "|" + e.typeOfEmployer + getFillingSpaces(e.typeOfEmployer.length(), MAX_TYPE_LENGTH) + "|" + format.format(e.workTimeRate) + getFillingSpaces(format.format(e.workTimeRate).toString().length(), MAX_WORK_TIME_RATE_LENGTH) + "|" + format.format(e.getSalary()) + getFillingSpaces(format.format(e.getSalary()).length(), MAX_SALARY_LENGTH) + "|");
+            System.out.println("|" + surname + getFillingSpaces(surname.length(), MAX_SURNAME_LENGTH) + "|" + e.typeOfEmployer + getFillingSpaces(e.getTypeOfEmployer().toString().length(), MAX_TYPE_LENGTH) + "|" + format.format(e.workTimeRate) + getFillingSpaces(format.format(e.workTimeRate).toString().length(), MAX_WORK_TIME_RATE_LENGTH) + "|" + format.format(e.getSalary()) + getFillingSpaces(format.format(e.getSalary()).length(), MAX_SALARY_LENGTH) + "|");
         }
         System.out.println(getFillingDashes(MAX_SURNAME_LENGTH + MAX_TYPE_LENGTH + MAX_WORK_TIME_RATE_LENGTH + MAX_SALARY_LENGTH + 5));
     }

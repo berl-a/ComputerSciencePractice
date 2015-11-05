@@ -3,7 +3,7 @@
  */
 public class Employer {
 
-    public String typeOfEmployer;
+    protected TypeOfEmployer typeOfEmployer;
 
     protected String surname;
     protected double workTimeRate;
@@ -25,4 +25,19 @@ public class Employer {
         return 0;
     }
 
+    public TypeOfEmployer getTypeOfEmployer() {
+        return typeOfEmployer;
+    }
+
+    public void setTypeOfEmployer(TypeOfEmployer typeOfEmployer) {
+        this.typeOfEmployer = typeOfEmployer;
+    }
+
+    public double getWorkTimeRate() {
+        return workTimeRate;
+    }
+
+    public void setWorkTimeRate(double workTimeRate) {
+        this.workTimeRate = workTimeRate;
+    }
 }

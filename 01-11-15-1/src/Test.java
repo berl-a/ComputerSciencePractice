@@ -13,8 +13,13 @@ public class Test {
         Business b = new Business(a0, a0, a0);
 
         for(int i = 0; i < 10; i++) {
-            b.addEmployer("Manager", "Employer #" + i, 0.65);
+            b.addEmployer(TypeOfEmployer.MANAGER, "Employer #" + i, 0.65);
         }
+        for(int i = 0; i < 10; i++) {
+            b.addEmployer(TypeOfEmployer.WORKER, "Employer #" + (i + 10), 0.5);
+        }
+        b.printEmployers();
+        b.removeEmployer("Employer #6");
         b.printEmployers();
 
 
