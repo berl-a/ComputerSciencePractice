@@ -35,9 +35,6 @@ public class Hotel {
 
         System.out.println();
 
-        for (Room room : getRoomsInARow(3)) {
-            c.addOccupiedRoom(room);
-        }
 
         showRooms();
     }
@@ -110,7 +107,7 @@ public class Hotel {
     }
 
     public boolean addRoomToCustomer(Customer c, Room r) {
-        return c.addOccupiedRoom(r);
+        return r.setCustomer(c);
     }
 
     public LinkedList<Room> getFreeRooms() {
@@ -138,7 +135,6 @@ public class Hotel {
             for (Room room : flour) {
                 if (room.isOccupied()) {
                     if ((name != null ? room.getCustomer().getName().equals(name) : true) && surname != null ? room.getCustomer().getSurname().equals(surname) : true) {
-                        room.getCustomer().removeOccupiedRoom(room);
                         room.removeCustomer();
                     }
                 }

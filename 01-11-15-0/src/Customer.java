@@ -3,8 +3,6 @@ import java.util.LinkedList;
 public class Customer {
 
     private String name, surname;
-    private LinkedList<Room> occupiedRooms = new LinkedList<Room>();
-
     Customer(String name, String surname) {
         this.name = name;
         this.surname = surname;
@@ -26,29 +24,4 @@ public class Customer {
         this.surname = surname;
     }
 
-    public boolean addOccupiedRoom(Room r) {
-        if (!occupiedRooms.contains(r)) {
-            occupiedRooms.add(r);
-            r.setCustomer(this);
-            return true;
-        } else
-            return false;
-    }
-
-    public boolean removeOccupiedRoom(Room r) {
-        if (occupiedRooms.contains(r)) {
-            occupiedRooms.remove(r);
-            return true;
-        } else
-            return false;
-
-    }
-
-    public LinkedList<Room> getOccupiedRooms() {
-        return occupiedRooms;
-    }
-
-    private void setOccupiedRooms(LinkedList<Room> occupiedRooms) {
-        this.occupiedRooms = occupiedRooms;
-    }
 }

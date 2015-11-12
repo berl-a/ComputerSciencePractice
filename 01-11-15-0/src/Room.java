@@ -23,8 +23,12 @@ public class Room<T> {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public boolean setCustomer(Customer customer) {
+        if(customer == null) {
+            this.customer = customer;
+            return true;
+        } else
+            return false;
     }
 
     public boolean isOccupied() {
